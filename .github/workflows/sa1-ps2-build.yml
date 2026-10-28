@@ -31,18 +31,17 @@ jobs:
       - name: Ensure PS2DEV
         run: make AUTO_INSTALL=yes COLOR=0 ensure-ps2dev
 
-      - name: Build PS2 ELF
-        run: make AUTO_INSTALL=yes COLOR=0 JOBS=2 PACK=0 fast
+      - name: Build packed PS2 ELF
+        run: make AUTO_INSTALL=yes COLOR=0 JOBS=2 elf
 
       - name: Verify PS2 ELF
         run: |
-          test -s build/SNESticle.elf
-          file build/SNESticle.elf
-          ls -lh build/SNESticle.elf
+          ls -lh build/SNESticle.packed.elf build/SNESticle.stripped.elf
+          test -s build/SNESticle.packed.elf
 
       - name: Upload ELF
         uses: actions/upload-artifact@v4
         with:
-          name: SNESticle-${{ github.sha }}
-          path: build/SNESticle.elf
+          name: SNESticle-packed-${{ github.sha }}
+          path: build/SNESticle.packed.elf
           if-no-files-found: error
