@@ -31,8 +31,8 @@ jobs:
       - name: Ensure PS2DEV
         run: make AUTO_INSTALL=yes COLOR=0 ensure-ps2dev
 
-      - name: Build deep-diagnostic PS2 ELF
-        run: run: make AUTO_INSTALL=yes COLOR=0 JOBS=2 PACK=0 fast
+      - name: Build PS2 ELF
+        run: make AUTO_INSTALL=yes COLOR=0 JOBS=2 PACK=0 fast
 
       - name: Verify PS2 ELF
         run: |
@@ -40,11 +40,9 @@ jobs:
           file build/SNESticle.elf
           ls -lh build/SNESticle.elf
 
-
-
-      - name: Upload experimental ELF
+      - name: Upload ELF
         uses: actions/upload-artifact@v4
         with:
-          name: SNESticle-SA1-experimental-${{ github.sha }}
+          name: SNESticle-${{ github.sha }}
           path: build/SNESticle.elf
           if-no-files-found: error
