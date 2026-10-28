@@ -222,7 +222,7 @@ Bool MainLoopReinitVideo()
    though everything is rendering correctly. "mass:/" is the safe
    default that works on real PS2 and on emulators with a USB image
    attached. Override at runtime if needed. */
-static Char _MainLoop_MenuStartDir[] = "";
+static Char _MainLoop_MenuStartDir[] = "mass0:/SNES";
 
 static int dispx, dispy;
 
